@@ -3,40 +3,43 @@
 import Link from "next/link";
 import styles from "./comments.module.css";
 import Image from "next/image";
-import useSWR from "swr";
-import { useSession } from "next-auth/react";
-import { useState } from "react";
+// import useSWR from "swr";
+// import { useSession } from "next-auth/react";
+// import { useState } from "react";
 
-const fetcher = async (url) => {
-  const res = await fetch(url);
+// const fetcher = async (url) => {
+//   const res = await fetch(url);
 
-  const data = await res.json();
+//   const data = await res.json();
 
-  if (!res.ok) {
-    const error = new Error(data.message);
-    throw error;
-  }
+//   if (!res.ok) {
+//     const error = new Error(data.message);
+//     throw error;
+//   }
 
-  return data;
-};
+//   return data;
+// };
 
-const Comments = ({ postSlug }) => {
-  const { status } = useSession();
+const Comments = () => {
+// const Comments = ({ postSlug }) => {
+  // const { status } = useSession();
 
-  const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
-    fetcher
-  );
+  // const { data, mutate, isLoading } = useSWR(
+  //   `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+  //   fetcher
+  // );
 
-  const [desc, setDesc] = useState("");
+  const status = "authenticated";
 
-  const handleSubmit = async () => {
-    await fetch("/api/comments", {
-      method: "POST",
-      body: JSON.stringify({ desc, postSlug }),
-    });
-    mutate();
-  };
+  // const [desc, setDesc] = useState("");
+
+  // const handleSubmit = async () => {
+  //   await fetch("/api/comments", {
+  //     method: "POST",
+  //     body: JSON.stringify({ desc, postSlug }),
+  //   });
+  //   mutate();
+  // };
 
   return (
     <div className={styles.container}>
@@ -46,16 +49,82 @@ const Comments = ({ postSlug }) => {
           <textarea
             placeholder="write a comment..."
             className={styles.input}
-            onChange={(e) => setDesc(e.target.value)}
+            // onChange={(e) => setDesc(e.target.value)}
           />
-          <button className={styles.button} onClick={handleSubmit}>
+          <button className={styles.button} 
+          // onClick={handleSubmit}
+          >
             Send
           </button>
         </div>
       ) : (
         <Link href="/login">Login to write a comment</Link>
       )}
+
       <div className={styles.comments}>
+              <div className={styles.comment} >
+                <div className={styles.user}>
+                
+                    <Image
+                      src="/p1.jpeg"
+                      alt=""
+                      width={50}
+                      height={50}
+                      className={styles.image}
+                    />
+              
+                  <div className={styles.userInfo}>
+                    <span className={styles.username}>Ammar Zahid</span>
+                    <span className={styles.date}>31.07.2024</span>
+                  </div>
+                </div>
+                <p className={styles.desc}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae beatae dolores eius doloremque hic, nemo ipsam ipsa consequuntur dicta. Eligendi, rerum ducimus explicabo impedit atque nemo? Assumenda omnis corrupti blanditiis!</p>
+              </div>
+      </div>
+      <div className={styles.comments}>
+              <div className={styles.comment} >
+                <div className={styles.user}>
+                
+                    <Image
+                      src="/p1.jpeg"
+                      alt=""
+                      width={50}
+                      height={50}
+                      className={styles.image}
+                    />
+              
+                  <div className={styles.userInfo}>
+                    <span className={styles.username}>Ammar Zahid</span>
+                    <span className={styles.date}>31.07.2024</span>
+                  </div>
+                </div>
+                <p className={styles.desc}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae beatae dolores eius doloremque hic, nemo ipsam ipsa consequuntur dicta. Eligendi, rerum ducimus explicabo impedit atque nemo? Assumenda omnis corrupti blanditiis!</p>
+              </div>
+      </div>
+      <div className={styles.comments}>
+              <div className={styles.comment} >
+                <div className={styles.user}>
+                
+                    <Image
+                      src="/p1.jpeg"
+                      alt=""
+                      width={50}
+                      height={50}
+                      className={styles.image}
+                    />
+              
+                  <div className={styles.userInfo}>
+                    <span className={styles.username}>Ammar Zahid</span>
+                    <span className={styles.date}>31.07.2024</span>
+                  </div>
+                </div>
+                <p className={styles.desc}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae beatae dolores eius doloremque hic, nemo ipsam ipsa consequuntur dicta. Eligendi, rerum ducimus explicabo impedit atque nemo? Assumenda omnis corrupti blanditiis!</p>
+              </div>
+      </div>
+
+
+
+      {/* <div className={styles.comments}>
         {isLoading
           ? "loading"
           : data?.map((item) => (
@@ -78,7 +147,7 @@ const Comments = ({ postSlug }) => {
                 <p className={styles.desc}>{item.desc}</p>
               </div>
             ))}
-      </div>
+      </div> */}
     </div>
   );
 };
