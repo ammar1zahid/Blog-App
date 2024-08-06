@@ -1,7 +1,30 @@
-.container{
-  flex:5
+.container {
+  flex: 5;
 }
 
-.title{
-  margin: 50px 0px;
+.title {
+  margin: 50px 0;
+  text-align: center; 
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s; 
+}
+
+.searchInput:focus {
+  border-color: #0070f3; 
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2); 
 }

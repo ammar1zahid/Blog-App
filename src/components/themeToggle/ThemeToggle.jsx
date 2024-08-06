@@ -8,7 +8,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 const ThemeToggle = () => {
   const { toggle, theme } = useContext(ThemeContext);
 
-  console.log("theme:",theme);
+
 
   return (
     <div

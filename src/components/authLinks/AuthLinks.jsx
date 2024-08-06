@@ -2,16 +2,21 @@
 import Link from "next/link";
  import styles from "./authLinks.module.css";
  import { useState } from "react";
-// import { signOut, useSession } from "next-auth/react";
+ import { signOut, useSession } from "next-auth/react";
 
 const AuthLinks = () => {
    const [open, setOpen] = useState(false);
 
-  //  const { status } = useSession();
+    const { data } = useSession();
+     const {status } = useSession();
+
+console.log(data)
+ 
+
 
 
 // temporary
-const status = "authenticated";
+//  const status = "authenticated";
 
 
 
@@ -27,7 +32,7 @@ const status = "authenticated";
             Write
           </Link>
           <span className={styles.link} 
-          // onClick={signOut}
+           onClick={signOut}
           >
             Logout
           </span>
